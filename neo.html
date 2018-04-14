@@ -4,25 +4,26 @@
 </head>
 <body>
   <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
-<script>
-window.onload = function() {
-if (annyang) {
-  // Add our commands to annyang
-  annyang.addCommands({
-    'hello': function() { alert('Hello world!'); }
-  });
+  <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
+  <script>
+  window.onload = function() {
+    if (annyang) {
+      // Add our commands to annyang
+      annyang.addCommands({
+        'hello': function() { alert('Hello world!'); }
+        'meow': function() { alert('Good kitty'); }
+      });
 
-  // Tell KITT to use annyang
-  SpeechKITT.annyang();
+      // Tell KITT to use annyang
+      SpeechKITT.annyang();
 
-  // Define a stylesheet for KITT to use
-  SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css');
+      // Define a stylesheet for KITT to use
+      SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css');
 
-  // Render KITT's interface
-  SpeechKITT.vroom();
-}
-}
-</script>
+      // Render KITT's interface
+      SpeechKITT.vroom();
+    }
+  }
+  </script>
 </body>
 </html>
