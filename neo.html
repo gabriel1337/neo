@@ -10,11 +10,11 @@
   window.onload = function() {
     function print(x) {
       console.log(x);
-    }
+    }\
     if (annyang) {
       //var textbox = document.getElementById("textbox").innerHTML;
       annyang.addCommands({
-        'hello': print("Hi")}
+        'hello': console.log("Hi!");
       });
 
       SpeechKITT.annyang();
