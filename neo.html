@@ -11,11 +11,10 @@
     function print(x) {
       console.log(x);
     }
-    console.log(typeof annyang.debug());
     if (annyang) {
       //var textbox = document.getElementById("textbox").innerHTML;
       annyang.addCommands({
-        'hello': function() {console.log("Hi!");}
+        'hello': print("Hi");}
       });
 
       SpeechKITT.annyang();
