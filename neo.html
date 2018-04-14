@@ -6,6 +6,7 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
 <script>
+window.onload = function() {
 if (annyang) {
   // Add our commands to annyang
   annyang.addCommands({
@@ -20,6 +21,7 @@ if (annyang) {
 
   // Render KITT's interface
   SpeechKITT.vroom();
+}
 }
 </script>
 </body>
