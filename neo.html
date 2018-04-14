@@ -8,14 +8,14 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
   <script>
   window.onload = function() {
-    function print(x) {
+    function (x) {
       console.log(x);
     }
+    annyang.debug();
     if (annyang) {
       //var textbox = document.getElementById("textbox").innerHTML;
       annyang.addCommands({
-        'hello': print("Hello there!"),
-        'open pod bay doors': print("Hello there!"),
+        'hello': function() {console.log("Hi!");}
       });
 
       SpeechKITT.annyang();
