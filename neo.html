@@ -3,26 +3,22 @@
 <head>
 </head>
 <body>
+  <pre id="textbox"></pre>
   <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
   <script>
   window.onload = function() {
     if (annyang) {
-      // Add our commands to annyang
+      var textbox = document.getElementById("textbox").innerHTML;
       annyang.addCommands({
-        'hello': function() { alert('Hello world!'); },
+        'hello': function() { textbox = "Hello!" },
       });
       annyang.addCommands({
-        'meow': function() { alert('Good kitty'); },
+        'meow': function() { textbox = "Good kitty" },
       });
 
-      // Tell KITT to use annyang
       SpeechKITT.annyang();
-
-      // Define a stylesheet for KITT to use
-      SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css');
-
-      // Render KITT's interface
+      SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css');\
       SpeechKITT.vroom();
     }
   }
