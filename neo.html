@@ -11,10 +11,8 @@
     if (annyang) {
       var textbox = document.getElementById("textbox").innerHTML;
       annyang.addCommands({
-        'hello': function() { textbox = "Hello!" },
-      });
-      annyang.addCommands({
-        'meow': function() { textbox = "Good kitty" },
+        'hello': function() { console.log("Hi!")},
+        'meow': function() { console.log("Good kitty")},
       });
 
       SpeechKITT.annyang();
