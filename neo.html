@@ -3,14 +3,13 @@
 <head>
 </head>
 <body>
-  <pre id="textbox"></pre>
+  <p id="textbox"></p>
   <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
   <script>
   window.onload = function() {
-    var textbox = document.getElementById("textbox").innerHTML;
     function print(x) {
-      textbox += x;
+      document.getElementById("textbox").innerHTML = "yeee";
     }
     if (annyang) {
       annyang.addCommands({
