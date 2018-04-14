@@ -8,12 +8,15 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
   <script>
   window.onload = function() {
+    function print(x) {
+      console.log(x);
+    }
     if (annyang) {
       //var textbox = document.getElementById("textbox").innerHTML;
       annyang.addCommands({
-        'hello': function() {console.log("Hi!");},
-        'meow': function() {console.log("Good kitty");},
-        'how are you': function() {console.log("I'm good.");},
+        'hello': function() {print("Hi!");},
+        'meow': function() {print("Good kitty");},
+        'how are you': function() {print("I'm good.");},
       });
 
       SpeechKITT.annyang();
