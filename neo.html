@@ -8,11 +8,11 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
   <script>
   window.onload = function() {
+    var textbox = document.getElementById("textbox").innerHTML;
     function print(x) {
-      console.log(x);
+      textbox += x;
     }
     if (annyang) {
-      //var textbox = document.getElementById("textbox").innerHTML;
       annyang.addCommands({
         'hello': function() {print("Hi!");},
         'meow': function() {print("Good kitty");},
