@@ -11,6 +11,13 @@
     function print(x) {
       document.getElementById("textbox").innerHTML += x+"\n";
     }
+    var showFlickr = function(tag) {
+        var url = 'http://api.flickr.com/services/rest/?tags='+tag;
+        $.getJSON(url);
+    }
+    var commands = {
+      'show me *tag': showFlickr,
+    }
     if (annyang) {
       annyang.addCommands({
         'hello': function() {print("Hi!");},
