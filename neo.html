@@ -11,7 +11,6 @@
     function print(x) {
       document.getElementById("textbox").innerHTML += x+"\n";
     }
-    
     if (annyang) {
       annyang.addCommands({
         'hello': function() {print("Hi!");},
@@ -23,7 +22,6 @@
         'tell me a joke': function() {print("Your life");},
         "what's your name": function() {print("Neo (get it, like from the Matrix)");},
         'tell me a riddle': function() {print("Imagine you're in a room, and you can't get out. How do you get out? Stop imagining.");},
-        'open the pod bay doors': function() {print("I'm sorry dave, I'm afraid I can't do that");},
       });
 
       SpeechKITT.annyang();
