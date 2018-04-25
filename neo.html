@@ -22,7 +22,7 @@
         'I like trains': function() {print("Me too");},
       };
       function showFlickr(search) {
-        var url = '//api.flickr.com/services/rest/?method=flickr.photos.search&api_key=a828a6571bb4f0ff8890f7a386d61975&sort=interestingness-desc&per_page=9&format=json&callback=jsonFlickrApi&tags='+tag;
+        var url = '//api.flickr.com/services/rest/?method=flickr.photos.search&api_key=a828a6571bb4f0ff8890f7a386d61975&sort=interestingness-desc&per_page=9&format=json&callback=jsonFlickrApi&tags='+search;
         fetch(url).then(
           function response(response) {
             return response.json();
@@ -45,7 +45,7 @@
         'tell me a riddle': function() {print(riddles[Math.round(Math.random()*riddles.length)]);},
         'open the pod bay doors': function() {print("I'm sorry dave, I'm afraid I can't do that");},
       });
-      SpeechKITT.annyang();
+      SpeechKITT.annyang();0
       SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css');
       SpeechKITT.vroom();
     }
