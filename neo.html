@@ -15,8 +15,16 @@
     "What comes one in a minute, twice in a moment, but never in a thousand years? The letter m",
     "Why is the dance move dab bad? Because dab spelled backwards is bad",
     "A guy rides his horse to a town on Friday, and comes back the day after on Friday. How? His horsey is named Friday",
-    ]
+  ]
     if (annyang) {
+      var commands = {
+        'show me *search': showFlickr,
+        'i like trains': function() {print("me too!");},
+      };
+      function showFlickr(search) {
+        var url = '//api.flickr.com/services/rest/?method=flickr.photos.search&api_key=a828a6571bb4f0ff8890f7a386d61975&sort=interestingness-desc&per_page=9&format=json&callback=jsonFlickrApi&tags='+tag;
+      };
+      annyang.addCommands(commands);
       annyang.addCommands({
         'hello': function() {print("Hi!");},
         'meow': function() {print("Good kitty");},
@@ -28,6 +36,7 @@
         "what's your name": function() {print("Neo (get it, like from the Matrix)");},
         'tell me a riddle': function() {print(riddles[Math.round(Math.random()*riddles.length)]);},
         'open the pod bay doors': function() {print("I'm sorry dave, I'm afraid I can't do that");},
+        //'show me *searcj': function() {},
       });
       SpeechKITT.annyang();
       SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css');
