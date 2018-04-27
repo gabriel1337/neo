@@ -4,8 +4,65 @@
 </head>
 <body>
   <pre id="textbox"></pre>
+  <p>Volume:</p>
+  <canvas id="meter" width="500" height="50" border="3px"></canvas>
   <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
+  <script>
+    function createAudioMeter(i, t, n, e) {
+        var o = i.createScriptProcessor(512);
+        return o.onaudioprocess = volumeAudioProcess, o.clipping = !1, o.lastClip = 0, o.volume = 0, o.clipLevel = t || .98, o.averaging = n || .95, o.clipLag = e || 750, o.connect(i.destination), o.checkClipping = function() {
+            return !!this.clipping && (this.lastClip + this.clipLag < window.performance.now() && (this.clipping = !1), this.clipping)
+        }, o.shutdown = function() {
+            this.disconnect(), this.onaudioprocess = null
+        }, o
+    }
+
+    function volumeAudioProcess(i) {
+        for (var t, n = i.inputBuffer.getChannelData(0), e = n.length, o = 0, s = 0; s < e; s++) t = n[s], Math.abs(t) >= this.clipLevel && (this.clipping = !0, this.lastClip = window.performance.now()), o += t * t;
+        var c = Math.sqrt(o / e);
+        this.volume = Math.max(c, this.volume * this.averaging)
+    }
+</script>
+<script>
+    var audioContext = null,
+        meter = null,
+        canvasContext = null,
+        WIDTH = 500,
+        HEIGHT = 50,
+        rafID = null;
+
+    function didntGetStream() {
+        alert("Stream generation failed.")
+    }
+    window.onload = function() {
+        canvasContext = document.getElementById("meter").getContext("2d"), window.AudioContext = window.AudioContext || window.webkitAudioContext, audioContext = new AudioContext;
+        try {
+            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia, navigator.getUserMedia({
+                audio: {
+                    mandatory: {
+                        googEchoCancellation: "false",
+                        googAutoGainControl: "false",
+                        googNoiseSuppression: "false",
+                        googHighpassFilter: "false"
+                    },
+                    optional: []
+                }
+            }, gotStream, didntGetStream)
+        } catch (e) {
+            alert("getUserMedia threw exception :" + e)
+        }
+    };
+    var mediaStreamSource = null;
+
+    function gotStream(e) {
+        mediaStreamSource = audioContext.createMediaStreamSource(e), meter = createAudioMeter(audioContext), mediaStreamSource.connect(meter), drawLoop()
+    }
+
+    function drawLoop(e) {
+        canvasContext.clearRect(0, 0, WIDTH, HEIGHT), meter.checkClipping() ? canvasContext.fillStyle = "red" : canvasContext.fillStyle = "green", canvasContext.fillRect(0, 0, meter.volume * WIDTH * 1.4, HEIGHT), rafID = window.requestAnimationFrame(drawLoop)
+    }
+</script>
   <script>
   window.onload = function() {
     function print(x) {
@@ -45,7 +102,7 @@
         'tell me a riddle': function() {print(riddles[Math.round(Math.random()*riddles.length)]);},
         'open the pod bay doors': function() {print("I'm sorry dave, I'm afraid I can't do that");},
       });
-      SpeechKITT.annyang();0
+      SpeechKITT.annyang();
       SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css');
       SpeechKITT.vroom();
     }
